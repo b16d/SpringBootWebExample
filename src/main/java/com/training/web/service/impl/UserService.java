@@ -1,7 +1,8 @@
 package com.training.web.service.impl;
 
+import com.training.web.connector.db.DataSource;
 import com.training.web.connector.db.dto.UserDTO;
-import com.training.web.connector.db.repository.UserRepository;
+import com.training.web.connector.db.hibernate.UserRepository;
 import com.training.web.domain.User;
 import com.training.web.domain.exception.BadUserException;
 import com.training.web.service.IUserService;
@@ -14,22 +15,22 @@ import org.springframework.stereotype.Service;
 public class UserService implements IUserService {
 
     @Autowired
-    private final UserRepository userRepository;
+    private final DataSource dataSource;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserService(DataSource dataSource) {
+        this.dataSource = dataSource;
     }
 
 
     @Override
     public User getById(Long id) {
-        UserDTO userDTO = userRepository.getReferenceById(id);
+        UserDTO userDTO = dataSource.getByUserId(id);
         return UserMapper.toUser(userDTO);
     }
 
     @Override
     public User getByName(String name) {
-        UserDTO userDTO = userRepository.getByName(name);
+        UserDTO userDTO = dataSource.getByName(name);
         return UserMapper.toUser(userDTO);
     }
 
@@ -39,7 +40,7 @@ public class UserService implements IUserService {
                 .valid(!user.name().isEmpty(), () -> new BadUserException( "Name is empty"))
                 .valid(!user.familyName().isEmpty(), () -> new BadUserException("Family Name is Empty"));
 
-        userRepository.save(UserMapper.userDTO(user));
-        return false;
+        dataSource.save(UserMapper.userDTO(user));
+        return true;
     }
 }
