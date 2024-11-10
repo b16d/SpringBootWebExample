@@ -63,6 +63,11 @@
 			<artifactId>jdbi3-sqlobject</artifactId>
 			<version>3.38.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.jdbi</groupId>
+			<artifactId>jdbi3-postgres</artifactId>
+			<version>3.38.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

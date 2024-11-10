@@ -2,7 +2,7 @@ package com.training.web.service.impl;
 
 import com.training.web.connector.db.DataSource;
 import com.training.web.connector.db.dto.UserDTO;
-import com.training.web.connector.db.hibernate.UserRepository;
+import com.training.web.connector.db.jdbi.dao.UserRepository;
 import com.training.web.domain.User;
 import com.training.web.domain.exception.BadUserException;
 import com.training.web.service.IUserService;
@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 public class UserService implements IUserService {
 
     @Autowired
-    private final DataSource dataSource;
+    private final UserRepository dataSource;
 
-    public UserService(DataSource dataSource) {
+    public UserService(UserRepository dataSource) {
         this.dataSource = dataSource;
     }
 
