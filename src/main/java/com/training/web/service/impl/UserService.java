@@ -37,10 +37,6 @@ public class UserService implements IUserService {
 
     @Override
     public boolean saveUser(User user) {
-        BeanValidator.of().isNull(user, () -> new BadUserException("user is null"))
-                .valid(!user.name().isEmpty(), () -> new BadUserException( "Name is empty"))
-                .valid(!user.familyName().isEmpty(), () -> new BadUserException("Family Name is Empty"));
-
         dataSource.save(UserMapper.userDTO(user));
         return true;
     }
