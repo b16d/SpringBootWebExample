@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-@Profile("postgres")
+@Profile("hibernate")
 public interface UserRepository extends JpaRepository<UserDTO, Long>, DataSource {
 
     @Query(value = """ 
