@@ -2,6 +2,7 @@ package com.training.web.connector.db.jdbi;
 
 import com.training.web.connector.db.jdbi.dao.UserRepository;
 import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.core.h2.H2DatabasePlugin;
 import org.jdbi.v3.core.mapper.RowMapper;
 import org.jdbi.v3.core.spi.JdbiPlugin;
 import org.jdbi.v3.postgres.PostgresPlugin;
@@ -39,11 +40,12 @@ public class JdbiConfiguration {
     }
 
     @Bean
-    public Jdbi jdbi(DataSource dataSource) {
+    public Jdbi jdbiPostgres(DataSource dataSource) {
         return Jdbi.create(dataSource)
                 .installPlugin(new SqlObjectPlugin())
                 .installPlugin(new PostgresPlugin());
     }
+
 
     @Bean
     public UserRepository getRepository(Jdbi jdbi) {

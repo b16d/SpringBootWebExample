@@ -5,9 +5,9 @@ import com.training.web.utils.BeanValidator;
 
 public record User(String name, String familyName) {
 
-    public User {
+     public User {
         BeanValidator.of()
-                .valid(name().isEmpty(), () -> new BadUserException( "Name is empty"))
-                .valid(familyName().isEmpty(), () -> new BadUserException("Family Name is Empty"));
+                .valid(!name.isEmpty(), () -> new BadUserException( "Name is empty"))
+                .valid(!familyName.isEmpty(), () -> new BadUserException("Family Name is Empty"));
     }
 }
