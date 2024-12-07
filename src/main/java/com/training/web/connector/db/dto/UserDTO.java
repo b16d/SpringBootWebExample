@@ -3,7 +3,7 @@ package com.training.web.connector.db.dto;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="APPLICATION_USER")
+@Table(name="application_user")
 public class UserDTO {
 
     private String name;
