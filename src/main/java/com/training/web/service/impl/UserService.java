@@ -1,5 +1,6 @@
 package com.training.web.service.impl;
 
+import com.training.web.aop.LogExecutionTime;
 import com.training.web.connector.db.DataSource;
 import com.training.web.connector.db.dto.UserDTO;
 import com.training.web.connector.db.jdbi.dao.UserRepository;
@@ -36,6 +37,7 @@ public class UserService implements IUserService {
     }
 
     @Override
+    @LogExecutionTime
     public boolean saveUser(User user) {
         dataSource.save(UserMapper.userDTO(user));
         return true;

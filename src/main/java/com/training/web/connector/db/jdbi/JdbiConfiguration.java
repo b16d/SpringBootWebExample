@@ -1,5 +1,6 @@
 package com.training.web.connector.db.jdbi;
 
+import com.training.web.connector.db.jdbi.dao.UserRepository;
 import org.jdbi.v3.core.Jdbi;
 import org.jdbi.v3.core.h2.H2DatabasePlugin;
 import org.jdbi.v3.core.mapper.RowMapper;
